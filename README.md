@@ -35,6 +35,8 @@ As a store manager I want to be able to advertise coupons for customers to save 
 - price math happens in cents internally, rounded to the nearest cent when necessary
 - sale rules are very likely to change
 - coupon rules are very likely to change
+- voiding scans is not necessary (in the real world you would want to of course)
+- all products have skus... not necessary to manually enter the price for a Line (which is also not valid in the real world)
 
 ## Glossary
 

@@ -8,7 +8,7 @@ describe('Register', () => {
     register = new Register();
   });
 
-  describe('with a product validation', () => {
+  describe('with product validation', () => {
     const validProduct = {
       sku: 'cherios',
       name: 'cherios',

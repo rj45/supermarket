@@ -29,5 +29,18 @@ module.exports = {
         functions: 'never',
       },
     ],
+
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: {
+          minProperties: 4,
+          multiline: true,
+          consistent: true,
+        },
+        // make destructuring work well with prettier
+        ObjectPattern: { minProperties: 10, multiline: true, consistent: true },
+      },
+    ],
   },
 };
