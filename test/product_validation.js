@@ -16,6 +16,7 @@ describe('Register', () => {
       qty: 1,
       price: 4.99,
     };
+
     // TODO: may want more specific error messages than just 'field is invalid'
     const testCases = [
       { field: 'sku', value: null, error: /sku is invalid/ },
@@ -26,48 +27,47 @@ describe('Register', () => {
       { field: 'name', value: 99, error: /name is invalid/ },
       { field: 'unit', value: null, error: /unit is invalid/ },
       { field: 'unit', value: 'weird', error: /unit is invalid/ },
+      { field: 'unit', value: GRAMS },
+      { field: 'unit', value: POUNDS },
+      { field: 'unit', value: OUNCES },
+      { field: 'unit', value: 'weird', error: /unit is invalid/ },
+      { field: 'unit', value: 'weird', error: /unit is invalid/ },
       { field: 'qty', value: null, error: /qty is invalid/ },
       { field: 'qty', value: 0, error: /qty is invalid/ },
       { field: 'qty', value: -1, error: /qty is invalid/ },
       { field: 'qty', value: 'a string', error: /qty is invalid/ },
       { field: 'price', value: null, error: /price is invalid/ },
-      { field: 'price', value: 0, error: /price is invalid/ }, // no free products
+      // no free products by default -- could use a coupon or sale to make a product free though
+      { field: 'price', value: 0, error: /price is invalid/ },
       { field: 'price', value: -1, error: /price is invalid/ },
       { field: 'price', value: 'a string', error: /price is invalid/ },
     ];
 
+    // make sure the validProduct is actually valid
     it('does not error with a valid product', () => {
       register.addProduct(validProduct);
-    });
-
-    it('does not error with gram units', () => {
-      const product = modifyProductFieldWithValue('unit', GRAMS);
-      register.addProduct(product);
-    });
-
-    it('does not error with pounds unit', () => {
-      const product = modifyProductFieldWithValue('unit', POUNDS);
-      register.addProduct(product);
-    });
-
-    it('does not error with ounces unit', () => {
-      const product = modifyProductFieldWithValue('unit', OUNCES);
-      register.addProduct(product);
     });
 
     // do table driven tests
     testCases.forEach(testCase => {
       const displayValue = handleEmptyString(testCase.value);
+      const displayCondition = handlePassOrError(testCase.error);
 
-      it(`errors when ${testCase.field} is ${displayValue}`, () => {
+      it(`${displayCondition} when ${testCase.field} is ${displayValue}`, () => {
         const errantProduct = modifyProductFieldWithValue(
           testCase.field,
           testCase.value
         );
 
-        assert.throws(() => {
+        function addErrantProduct() {
           register.addProduct(errantProduct);
-        }, testCase.error);
+        }
+
+        if (testCase.error) {
+          assert.throws(addErrantProduct, testCase.error);
+        } else {
+          addErrantProduct();
+        }
       });
     });
 
@@ -76,6 +76,13 @@ describe('Register', () => {
         return 'empty string';
       }
       return value;
+    }
+
+    function handlePassOrError(error) {
+      if (error) {
+        return 'errors';
+      }
+      return 'does not error';
     }
 
     function modifyProductFieldWithValue(field, value) {
