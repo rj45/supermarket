@@ -37,6 +37,11 @@ As a store manager I want to be able to advertise coupons for customers to save 
 - coupon rules are very likely to change
 - voiding scans is not necessary (in the real world you would want to of course)
 - all products have skus... not necessary to manually enter the price for a Line (which is also not valid in the real world)
+- value/entity objects use ES6 getters to make sure attributes are immutable
+- member variables/methods starting with _ are private
+- the mocha documentation says not to use arrow functions. I think arrow functions are easier to read so I ignored this
+- all sales are valid as long as they are added to the system (no time checks)
+- things can't be removed/voided from the system (for simplicity / time)
 
 ## Glossary
 
@@ -52,5 +57,13 @@ Price - what and how the customer is charged for a Product
 Coupon - the logic for how a coupon works and how its valid
 Coupons - a list of valid coupons in circulation and their skus
 
+PriceSale - a sale that modifies a product's price to a new price
+
 sku - the ID of a product, alphanumeric
 qty - quantity of something, either weight or number
+
+## TODO
+
+- prevent adding of duplicate products
+- prevent adding of duplicate sales
+- prevent adding of duplicate coupons

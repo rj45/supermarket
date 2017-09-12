@@ -1,4 +1,4 @@
-const assert = require('assert');
+const { runValidationsFor } = require('./helpers');
 const { Register, EACH, GRAMS, POUNDS, OUNCES } = require('../lib/register');
 
 describe('Register', () => {
@@ -43,52 +43,10 @@ describe('Register', () => {
       { field: 'price', value: 'a string', error: /price is invalid/ },
     ];
 
-    // make sure the validProduct is actually valid
-    it('does not error with a valid product', () => {
-      register.addProduct(validProduct);
+    runValidationsFor({
+      action: product => register.addProduct(product),
+      validThing: validProduct,
+      testCases,
     });
-
-    // do table driven tests
-    testCases.forEach(testCase => {
-      const displayValue = handleEmptyString(testCase.value);
-      const displayCondition = handlePassOrError(testCase.error);
-
-      it(`${displayCondition} when ${testCase.field} is ${displayValue}`, () => {
-        const errantProduct = modifyProductFieldWithValue(
-          testCase.field,
-          testCase.value
-        );
-
-        function addErrantProduct() {
-          register.addProduct(errantProduct);
-        }
-
-        if (testCase.error) {
-          assert.throws(addErrantProduct, testCase.error);
-        } else {
-          addErrantProduct();
-        }
-      });
-    });
-
-    function handleEmptyString(value) {
-      if (value === '') {
-        return 'empty string';
-      }
-      return value;
-    }
-
-    function handlePassOrError(error) {
-      if (error) {
-        return 'errors';
-      }
-      return 'does not error';
-    }
-
-    function modifyProductFieldWithValue(field, value) {
-      const errantProduct = Object.assign({}, validProduct); // make a clone
-      errantProduct[field] = value;
-      return errantProduct;
-    }
   });
 });

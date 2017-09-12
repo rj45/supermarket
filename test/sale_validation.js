@@ -21,11 +21,11 @@ describe('Register', () => {
       register.addProduct(validProduct);
     });
 
-    describe('with line input validation', () => {
-      const validLine = {
+    describe('with sale input validation', () => {
+      const validSale = {
         sku: 'cherios',
-        unit: EACH,
-        qty: 1,
+        type: 'PriceSale',
+        price: 2.99,
       };
 
       // TODO: may want more specific error messages than just 'field is invalid'
@@ -34,15 +34,20 @@ describe('Register', () => {
         { field: 'sku', value: '', error: /sku is invalid/ },
         { field: 'sku', value: 99, error: /sku is invalid/ },
         { field: 'sku', value: 'unknown', error: /could not find product/ },
-        { field: 'qty', value: null, error: /qty is invalid/ },
-        { field: 'qty', value: 0, error: /qty is invalid/ },
-        { field: 'qty', value: -1, error: /qty is invalid/ },
-        { field: 'qty', value: 'a string', error: /qty is invalid/ },
+        { field: 'type', value: null, error: /sale type not found/ },
+        { field: 'type', value: '', error: /sale type not found/ },
+        { field: 'type', value: 99, error: /sale type not found/ },
+        { field: 'type', value: 'unknown', error: /sale type not found/ },
+        { field: 'price', value: null, error: /price is invalid/ },
+        // products can be free if on sale for free!
+        { field: 'price', value: 0 },
+        { field: 'price', value: -1, error: /price is invalid/ },
+        { field: 'price', value: 'a string', error: /price is invalid/ },
       ];
 
       runValidationsFor({
-        action: line => register.scan(line),
-        validThing: validLine,
+        action: sale => register.addSale(sale),
+        validThing: validSale,
         testCases,
       });
     });
