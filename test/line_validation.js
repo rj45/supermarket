@@ -35,6 +35,7 @@ describe('Register', () => {
         { field: 'sku', value: null, error: /sku is invalid/ },
         { field: 'sku', value: '', error: /sku is invalid/ },
         { field: 'sku', value: 99, error: /sku is invalid/ },
+        { field: 'sku', value: 'unknown', error: /could not find product/ },
         { field: 'qty', value: null, error: /qty is invalid/ },
         { field: 'qty', value: 0, error: /qty is invalid/ },
         { field: 'qty', value: -1, error: /qty is invalid/ },
