@@ -82,3 +82,16 @@ qty - quantity of something, either weight or number
 This project is incomplete according to the use cases above. In order to finish, all that is required is more sales (DiscountSale and XForYSale), and to implement the coupon system which would be very similar in design to the sales system. A coupon can only be applied to a Bill once. It would calculate a discount similar to sales but would be calculated after sales and be given the intermediate total. Many kinds of coupons could be easily added to the system. Potentially coupons could apply to specific products and some coupons could have multiple instances added to a bill. Another alternative is to have coupons enable a sale in the system if applied to a bill (which may be easier / simpler).
 
 There are also many TODO comments throughout the code to indicate where I was aware changes need to be made for cleaner code and/or optimizations that may need to be made. Some of them should be fixed right away and would be if I had more time, others could wait until there was a need (such as slow performance or a change).
+
+## Running
+
+Tested on node 6.x.
+
+First install modules:
+
+	npm install
+
+Since this is just a domain model, the only way to run is to run the tests:
+
+	npm test
+
