@@ -30,14 +30,14 @@ describe('Register', () => {
 
       // TODO: may want more specific error messages than just 'field is invalid'
       const testCases = [
-        { field: 'sku', value: null, error: /sku is invalid/ },
-        { field: 'sku', value: '', error: /sku is invalid/ },
-        { field: 'sku', value: 99, error: /sku is invalid/ },
+        { field: 'sku', value: null, error: /sku is null/ },
+        { field: 'sku', value: '', error: /sku is empty/ },
+        { field: 'sku', value: 99, error: /sku is not a string/ },
         { field: 'sku', value: 'unknown', error: /could not find product/ },
-        { field: 'qty', value: null, error: /qty is invalid/ },
-        { field: 'qty', value: 0, error: /qty is invalid/ },
-        { field: 'qty', value: -1, error: /qty is invalid/ },
-        { field: 'qty', value: 'a string', error: /qty is invalid/ },
+        { field: 'qty', value: null, error: /qty is null/ },
+        { field: 'qty', value: 0, error: /qty is zero/ },
+        { field: 'qty', value: -1, error: /qty is negative/ },
+        { field: 'qty', value: 'a string', error: /qty is not a number/ },
       ];
 
       runValidationsFor({

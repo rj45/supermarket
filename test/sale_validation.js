@@ -30,19 +30,19 @@ describe('Register', () => {
 
       // TODO: may want more specific error messages than just 'field is invalid'
       const testCases = [
-        { field: 'sku', value: null, error: /sku is invalid/ },
-        { field: 'sku', value: '', error: /sku is invalid/ },
-        { field: 'sku', value: 99, error: /sku is invalid/ },
+        { field: 'sku', value: null, error: /sku is null/ },
+        { field: 'sku', value: '', error: /sku is empty/ },
+        { field: 'sku', value: 99, error: /sku is not a string/ },
         { field: 'sku', value: 'unknown', error: /could not find product/ },
         { field: 'type', value: null, error: /sale type not found/ },
         { field: 'type', value: '', error: /sale type not found/ },
         { field: 'type', value: 99, error: /sale type not found/ },
         { field: 'type', value: 'unknown', error: /sale type not found/ },
-        { field: 'price', value: null, error: /price is invalid/ },
+        { field: 'price', value: null, error: /price is null/ },
         // products can be free if on sale for free!
         { field: 'price', value: 0 },
-        { field: 'price', value: -1, error: /price is invalid/ },
-        { field: 'price', value: 'a string', error: /price is invalid/ },
+        { field: 'price', value: -1, error: /price is negative/ },
+        { field: 'price', value: 'a string', error: /price is not a number/ },
       ];
 
       runValidationsFor({
