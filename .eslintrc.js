@@ -6,9 +6,6 @@ module.exports = {
     it: true,
   },
   rules: {
-    // I want to use console statements for debugging
-    'no-console': ['off'],
-
     // I want to use functions before they are defined because it makes the code cleaner
     'no-use-before-define': ['error', { functions: false, classes: false }],
 

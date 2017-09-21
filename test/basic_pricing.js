@@ -8,7 +8,7 @@ describe('Register', () => {
     register = new Register();
   });
 
-  describe('with a valid product', () => {
+  describe('with a couple products', () => {
     const CHERIOS_PRICE = 4.99;
     const RAISENS_PRICE = 1.99;
 
@@ -29,7 +29,7 @@ describe('Register', () => {
       });
     });
 
-    describe('each pricing', () => {
+    describe('with basic pricing', () => {
       const testCases = [
         { scan: { sku: 'cherios', qty: 1 }, total: CHERIOS_PRICE },
         { scan: { sku: 'cherios', qty: 2 }, total: 2 * CHERIOS_PRICE },

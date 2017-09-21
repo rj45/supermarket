@@ -1,4 +1,4 @@
-const { runValidationsFor } = require('./helpers');
+const { runValidationTestCases } = require('./helpers');
 const { Register, EACH } = require('../lib/register');
 
 describe('Register', () => {
@@ -28,7 +28,6 @@ describe('Register', () => {
         qty: 1,
       };
 
-      // TODO: may want more specific error messages than just 'field is invalid'
       const testCases = [
         { field: 'sku', value: null, error: /sku is null/ },
         { field: 'sku', value: '', error: /sku is empty/ },
@@ -40,7 +39,7 @@ describe('Register', () => {
         { field: 'qty', value: 'a string', error: /qty is not a number/ },
       ];
 
-      runValidationsFor({
+      runValidationTestCases({
         action: line => register.scan(line),
         validThing: validLine,
         testCases,

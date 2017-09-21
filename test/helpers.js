@@ -1,15 +1,12 @@
 const assert = require('assert');
 
-// applies a bunch of validation test cases
-// TODO: this name is probably not the greatest
-function runValidationsFor(params) {
+function runValidationTestCases(params) {
   const { action, validThing, testCases } = params;
-  // make sure the validThing is actually valid
+
   it('does not error when valid', () => {
     action(validThing);
   });
 
-  // do table driven tests
   testCases.forEach(testCase => {
     const displayValue = handleEmptyString(testCase.value);
     const displayCondition = handlePassOrError(testCase.error);
@@ -54,5 +51,5 @@ function runValidationsFor(params) {
 }
 
 module.exports = {
-  runValidationsFor,
+  runValidationTestCases,
 };

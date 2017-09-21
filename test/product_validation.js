@@ -1,4 +1,4 @@
-const { runValidationsFor } = require('./helpers');
+const { runValidationTestCases } = require('./helpers');
 const { Register, EACH, GRAMS, POUNDS, OUNCES } = require('../lib/register');
 
 describe('Register', () => {
@@ -17,7 +17,6 @@ describe('Register', () => {
       price: 4.99,
     };
 
-    // TODO: may want more specific error messages than just 'field is invalid'
     const testCases = [
       { field: 'sku', value: null, error: /sku is null/ },
       { field: 'sku', value: '', error: /sku is empty/ },
@@ -42,7 +41,7 @@ describe('Register', () => {
       { field: 'price', value: 'a string', error: /price is not a number/ },
     ];
 
-    runValidationsFor({
+    runValidationTestCases({
       action: product => register.addProduct(product),
       validThing: validProduct,
       testCases,
