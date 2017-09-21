@@ -74,7 +74,6 @@ qty - quantity of something, either weight or number
 
 ## TODO
 
-- prevent adding of duplicate products
 - prevent adding of duplicate sales
 
 ## Finishing up

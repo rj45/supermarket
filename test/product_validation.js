@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 const { runValidationTestCases } = require('./helpers');
 const { Register, EACH, GRAMS, POUNDS, OUNCES } = require('../lib/register');
 
@@ -45,6 +47,21 @@ describe('Register', () => {
       action: product => register.addProduct(product),
       validThing: validProduct,
       testCases,
+    });
+
+    it('does not allow duplicate skus', () => {
+      register.addProduct(validProduct);
+      const productWithSameSku = {
+        sku: validProduct.sku,
+        name: 'cherios also',
+        unit: EACH,
+        qty: 1,
+        price: 2.99,
+      };
+      assert.throws(
+        () => register.addProduct(productWithSameSku),
+        /sku is already in use/
+      );
     });
   });
 });
