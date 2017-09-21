@@ -1,3 +1,5 @@
+const assert = require('assert');
+
 const { runValidationTestCases } = require('./helpers');
 const { Register, EACH } = require('../lib/register');
 
@@ -48,6 +50,19 @@ describe('Register', () => {
         action: sale => register.addSale(sale),
         validThing: validSale,
         testCases,
+      });
+
+      it('does not allow duplicate skus', () => {
+        register.addSale(validSale);
+        const saleWithSameSku = {
+          sku: validSale.sku,
+          type: 'PriceSale',
+          price: 1.99,
+        };
+        assert.throws(
+          () => register.addSale(saleWithSameSku),
+          /sku already has sale applied/
+        );
       });
     });
   });

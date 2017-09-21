@@ -72,10 +72,6 @@ ThresholdCoupon - a coupon that applies a discount after a certain amount is bou
 sku - the ID of a product, alphanumeric
 qty - quantity of something, either weight or number
 
-## TODO
-
-- prevent adding of duplicate sales
-
 ## Finishing up
 
 This project is incomplete according to the use cases above. In order to finish, all that is required is more sales (DiscountSale and XForYSale), and to implement the coupon system which would be very similar in design to the sales system. A coupon can only be applied to a Bill once. It would calculate a discount similar to sales but would be calculated after sales and be given the intermediate total. Many kinds of coupons could be easily added to the system. Potentially coupons could apply to specific products and some coupons could have multiple instances added to a bill. Another alternative is to have coupons enable a sale in the system if applied to a bill (which may be easier / simpler).
