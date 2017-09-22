@@ -35,10 +35,10 @@ describe('Register', () => {
         { field: 'sku', value: '', error: /sku is empty/ },
         { field: 'sku', value: 99, error: /sku is not a string/ },
         { field: 'sku', value: 'unknown', error: /could not find product/ },
-        { field: 'type', value: null, error: /sale type not found/ },
-        { field: 'type', value: '', error: /sale type not found/ },
-        { field: 'type', value: 99, error: /sale type not found/ },
-        { field: 'type', value: 'unknown', error: /sale type not found/ },
+        { field: 'type', value: null, error: /type is null/ },
+        { field: 'type', value: '', error: /type is empty/ },
+        { field: 'type', value: 99, error: /type is not a string/ },
+        { field: 'type', value: 'unknown', error: /type not found/ },
         { field: 'price', value: null, error: /price is null/ },
         // products can be free if on sale for free!
         { field: 'price', value: 0 },
@@ -61,7 +61,7 @@ describe('Register', () => {
         };
         assert.throws(
           () => register.addSale(saleWithSameSku),
-          /sku already has sale applied/
+          /sku is already in use/
         );
       });
     });
