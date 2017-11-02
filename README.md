@@ -17,7 +17,7 @@ http://codekata.com/kata/kata09-back-to-the-checkout/
 
 Though it is not exactly the same. The goal was to demonstrate my ability in object oriented design and test driven development, not to exactly match the katas.
 
-## Use cases from email
+## Use cases
 
 * As a customer I want to know the total price of a list of items so I can buy them
 * As a store manager I want to be able to price items per item (each)
