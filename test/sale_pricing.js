@@ -112,8 +112,9 @@ describe('Register', () => {
       it('charges a discount for extra qty', () => {
         register.scan({ sku: 'cherios', qty: 5 });
 
-        const costOfEachItem = REGULAR_PRICE * FOR_THE_PRICE_OF / BUY_SOME;
-        assert.equal(register.total, (5 * costOfEachItem).toFixed(2));
+        const costAll = REGULAR_PRICE * FOR_THE_PRICE_OF;
+        const costEach = costAll / BUY_SOME;
+        assert.equal(register.total, (5 * costEach).toFixed(2));
       });
     });
   });

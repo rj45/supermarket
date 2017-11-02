@@ -1,5 +1,5 @@
 {
-  "name": "groceryprices",
+  "name": "supermarket",
   "version": "1.0.0",
   "description": "Model grocery store prices",
   "main": "index.js",
@@ -11,7 +11,8 @@
     "lint": "eslint test lib"
   },
   "author": "Ryan Sanche",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "private": true,
   "devDependencies": {
     "eslint": "^4.6.1",
     "eslint-config-airbnb-base": "^12.0.0",
