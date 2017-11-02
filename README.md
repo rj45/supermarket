@@ -88,3 +88,6 @@ Since this is just a domain model, the only way to run is to run the tests:
 
 	npm test
 
+## License
+
+MIT -- See LICENSE for details
